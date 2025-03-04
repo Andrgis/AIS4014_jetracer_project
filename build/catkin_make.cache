@@ -1,0 +1,2 @@
+ris:ris_msgs
+-DCATKIN_DEVEL_PREFIX=/home/jetson/workspace/devel -DCMAKE_INSTALL_PREFIX=/home/jetson/workspace/install -G Unix Makefiles
