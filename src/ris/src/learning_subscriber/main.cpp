@@ -12,6 +12,7 @@ int main(int argc, char **argv){
   ros::NodeHandle node; // Declaring the node handle
 
   ros::Subscriber topic_subscriber = node.subscribe("learning_topic", 100, writeMsgToLog);
+  ROS_INFO("Subscriber node started.");
 
   ros::spin(); // Checks for update?
 }

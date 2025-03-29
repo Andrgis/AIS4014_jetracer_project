@@ -7,6 +7,7 @@ int main(int argc, char **argv){
 
   // Declaring the publisher node using the node handle. Topic name: "learning_publiser". Max number of msg: 100.
   ros::Publisher topic_publisher = node.advertise<ris_msgs::Dog_data>("learning_topic", 100);
+  ROS_INFO("Publisher node started.");
   ros::Rate loop_rate(2); // setting how often the publisher should publish
 
   while(ros::ok()){
