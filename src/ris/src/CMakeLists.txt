@@ -1,5 +1,8 @@
 add_subdirectory(hello_world)
 add_subdirectory(hello_server)
 add_subdirectory(hello_client)
+#add_subdirectory(hello_state)
 add_subdirectory(hello_publisher)
 add_subdirectory(hello_subscriber)
+add_subdirectory(learning_publisher)
+add_subdirectory(learning_subscriber)
