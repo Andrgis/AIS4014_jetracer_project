@@ -21,6 +21,10 @@ add_service_files(DIRECTORY srv/ FILES
 	Addition_service_node.srv
 )
 
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
+
 generate_messages(DEPENDENCIES ${MESSAGE_DEPENDENCIES})
 
 catkin_package(DEPENDS ${MESSAGE_DEPENDENCIES})

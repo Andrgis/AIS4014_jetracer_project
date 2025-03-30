@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="ris" type="learning_server" name="service_server_node" output="screen"></node>
+	<node pkg="ris" type="learning_client" name="service_client_node" output="screen"></node>
+</launch>
