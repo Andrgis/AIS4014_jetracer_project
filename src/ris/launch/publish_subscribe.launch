@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="ris" type="learning_publisher" name="service_publisher_node" output="screen"></node>
+	<node pkg="ris" type="learning_subscriber" name="service_subscriber_node" output="screen"></node>
+</launch>
