@@ -12,6 +12,7 @@ find_package(
     catkin REQUIRED COMPONENTS
     roscpp
     roslib
+    rospy
     ris_msgs
     std_msgs
     message_runtime
@@ -21,5 +22,13 @@ catkin_package(
     CATKIN_DEPENDS message_runtime ris_msgs
 )
 
+catkin_install_python(PROGRAMS
+        scripts/lidar_listener.py
+        scripts/publisher_node.py
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 add_subdirectory(src)
+#add_subdirectory(scripts_py)
+#add_subdirectory(data)
 #add_subdirectory(launch)

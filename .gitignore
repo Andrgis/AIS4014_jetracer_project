@@ -1,6 +1,8 @@
 # Ignore build files
 build/
-
+data/
 devel/
 
 .idea/
+imu_data.csv
+odom_data.csv

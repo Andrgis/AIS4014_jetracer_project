@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="ris" type="publisher_node.py" name="python_publisher" output="screen"></node>
+</launch>
