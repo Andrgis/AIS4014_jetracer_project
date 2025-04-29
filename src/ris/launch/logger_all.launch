@@ -1,0 +1,15 @@
+<launch>
+  <arg name="log_dir" default="$(eval strftime('%Y-%m-%d_%H-%M-%S'))"/>
+
+  <node name="imu_logger" pkg="ris" type="logger_imu" output="screen">
+    <param name="log_dir" value="$(arg log_dir)" />
+  </node>
+
+  <node name="lidar_logger" pkg="ris" type="logger_lidar" output="screen">
+    <param name="log_dir" value="$(arg log_dir)" />
+  </node>
+
+  <node name="odom_logger" pkg="ris" type="logger_odom" output="screen">
+      <param name="log_dir" value="$(arg log_dir)" />
+    </node>
+</launch>
