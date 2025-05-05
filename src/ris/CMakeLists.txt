@@ -16,6 +16,9 @@ find_package(
     ris_msgs
     std_msgs
     message_runtime
+    sensor_msgs
+    nav_msgs
+    message_filters
 )
 
 catkin_package(
@@ -23,6 +26,8 @@ catkin_package(
 )
 
 catkin_install_python(PROGRAMS
+        scripts/bag_visual.py
+        scripts/dead_reackoning_KF.py
         scripts/lidar_listener.py
         scripts/publisher_node.py
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
