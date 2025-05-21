@@ -3,6 +3,7 @@
 #include <sensor_msgs/Imu.h>
 #include <message_filters/subscriber.h>
 #include <message_filters/time_synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
 #include "KalmanFilter.h"
 #include <Eigen/Dense>
 #include <tf/transform_datatypes.h>
@@ -10,11 +11,13 @@
 class OdomFuseNode
 {
 public:
+  using MySyncPolicy = message_filters::sync_policies::ApproximateTime<
+    nav_msgs::Odometry, sensor_msgs::Imu>;
   OdomFuseNode()
     : nh_(),
       odom_sub_(nh_, "/odom_raw", 1),
       imu_sub_(nh_, "/imu", 1),
-      sync_(odom_sub_, imu_sub_, 10),
+      sync_( MySyncPolicy(10), odom_sub_, imu_sub_ ),
       initialized_(false)
   {
     // Set up your matrices
@@ -30,7 +33,9 @@ public:
     // dummy dt; will be overwritten on first update
     kf_ = std::make_unique<KalmanFilter>(0.01, A_, C_, Q_, R_, P_);
 
-    sync_.registerCallback(boost::bind(&OdomFuseNode::callback, this, _1, _2));
+    sync_.registerCallback(
+    boost::bind(&OdomFuseNode::callback, this, _1, _2)
+    );
     fused_pub_ = nh_.advertise<nav_msgs::Odometry>("/odom_kalman", 10);
   }
 
@@ -126,8 +131,7 @@ private:
   ros::NodeHandle nh_;
   message_filters::Subscriber<nav_msgs::Odometry> odom_sub_;
   message_filters::Subscriber<sensor_msgs::Imu>      imu_sub_;
-  message_filters::TimeSynchronizer<
-      nav_msgs::Odometry, sensor_msgs::Imu>           sync_;
+  message_filters::Synchronizer<MySyncPolicy> sync_;
 
   ros::Publisher fused_pub_;
   std::unique_ptr<KalmanFilter> kf_;
